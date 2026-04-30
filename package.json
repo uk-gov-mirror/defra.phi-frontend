@@ -36,7 +36,7 @@
   "author": "Defra DDTS",
   "license": "OGL-UK-3.0",
   "dependencies": {
-    "@babel/runtime": "7.24.4",
+    "@babel/runtime": "7.29.2",
     "@elastic/ecs-pino-format": "1.5.0",
     "@hapi/catbox-redis": "7.0.2",
     "@hapi/cookie": "12.0.1",
