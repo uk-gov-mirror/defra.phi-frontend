@@ -2,7 +2,7 @@
 {% block beforeContent %}
   <a href="/plant-health/import-confirmation?whereareyouimportinginto=gb&searchQuery={{searchQuery.value}}&fullSearchQuery={{fullSearchQuery.value}}&&countryCode={{countryCode}}" class="govuk-back-link" type='button'>Back</a>
 <script>
- window.onbeforeprint=function()
+ globalThis.onbeforeprint=function()
   {
     console.log("comes into js file")
   var style =document.createElement('style');

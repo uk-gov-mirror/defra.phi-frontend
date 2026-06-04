@@ -4,7 +4,7 @@
 {% if page == "pestsearch" %}
 <a href="/plant-health/purpose-of-visit?whatdoyouwanttofind=pest&pestsearchQuery={{pestsearchQuery.value}}&pestFullSearchQuery={{pestFullSearchQuery.value}}&cslRef={{cslRef}}" class="govuk-back-link" type='button'>Back</a>
 <script>
- window.onbeforeprint=function()
+ globalThis.onbeforeprint=function()
   {
   var style =document.createElement('style');
   style.type='text/css';
@@ -15,7 +15,7 @@
 {% else %}
 <a href="/plant-health/format?hostRef={{hostRef}}&eppoCode={{eppoCode}}&countrySearchQuery={{countrySearchQuery}}&searchQuery={{searchQuery}}&fullSearchQuery={{fullSearchQuery}}&format={{format}}" class="govuk-back-link" type='button'>Back</a>
 <script>
- window.onbeforeprint=function()
+ globalThis.onbeforeprint=function()
   {
   var style =document.createElement('style');
   style.type='text/css';

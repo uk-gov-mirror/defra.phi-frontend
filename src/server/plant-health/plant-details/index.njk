@@ -2,7 +2,7 @@
 {% block beforeContent %}
   <a href="/plant-health/country-search?searchQuery={{searchQuery.value}}&fullSearchQuery={{fullSearchQuery.value}}&&hostRef={{hostRef}}&&eppoCode={{eppoCode}}&&countrySearchQuery={{countrySearchQuery.value}}&emptyCountrySearchQuery=false&format={{format}}&countryCode={{countryCode}}" class="govuk-back-link" type='button'>Back</a>
 <script>
- window.onbeforeprint=function()
+ globalThis.onbeforeprint=function()
   {
     console.log("comes into js file")
   var style =document.createElement('style');

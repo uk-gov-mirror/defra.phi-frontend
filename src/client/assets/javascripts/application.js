@@ -13,7 +13,7 @@ import './pest-search.js'
 import './country-search.js'
 
 import CookieBanner from './cookie-banner'
-import Analytics from './analytics'
+import Analytics from './loadAnalytics'
 // import config from '~/src/config'
 import {
   getConsentCookie,
@@ -55,16 +55,17 @@ function compareNames(a, b) {
   return 0
 }
 
+function runPopulate(query, finalArray, populateResults) {
+  if (query.length > 2) {
+    populateResults(finalArray.sort(compareNames))
+  }
+}
+
 export function timerFunction(query, finalArray, populateResults) {
-  return setTimeout(async () => {
+  return setTimeout(() => {
     try {
-      if (query.length > 2) {
-        return populateResults(finalArray.sort(compareNames))
-      }
-    } catch (error) {
-      // TypeError: Failed to fetch
-      // console.log('Error fetching suggestions:', error)
-    }
+      runPopulate(query, finalArray, populateResults)
+    } catch (_) {}
   }, 1000)
 }
 

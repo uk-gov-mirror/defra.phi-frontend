@@ -1,9 +1,9 @@
 // @ts-nocheck
 export default function loadAnalytics() {
-  if (!window.ga || !window.ga.loaded) {
-    window.dataLayer = window.dataLayer || []
+  if (!globalThis.ga || !globalThis.ga.loaded) {
+    globalThis.dataLayer = globalThis.dataLayer || []
     if (localStorage.getItem('consentMode') === null) {
-      window.dataLayer.push('consent', 'default', {
+      globalThis.dataLayer.push('consent', 'default', {
         ad_storage: 'denied',
         analytics_storage: 'denied',
         personalization_storage: 'denied',
@@ -11,7 +11,7 @@ export default function loadAnalytics() {
         security_storage: 'denied'
       })
     } else {
-      window.dataLayer.push(
+      globalThis.dataLayer.push(
         'consent',
         'default',
         JSON.parse(localStorage.getItem('consentMode'))
@@ -39,28 +39,28 @@ export default function loadAnalytics() {
         k.async = true
         k.src = "https://www.googletagmanager.com/gtag/js?id=G-HVF94VF4NZ"
         document.body.appendChild(k)
-      //  const urlParams = new URLSearchParams(window.location.search);
+      //  const urlParams = new URLSearchParams(globalThis.location.search);
        // const userId = urlParams.get('userId');
         // const utm_source = urlParams.get('utm_source');
        // const utm_campaign = urlParams.get('utm_campaign');
         // const utm_medium = urlParams.get('utm_medium');
-       
-        
+
+
         const f = d.getElementsByTagName(s)[0];
-        const j = d.createElement(s); 
+        const j = d.createElement(s);
       //  const dl = l != 'dataLayer' ? '&l=' + l : ''
         j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtag/js?id=G-HVF94VF4NZ' 
+        j.src = 'https://www.googletagmanager.com/gtag/js?id=G-HVF94VF4NZ'
         f.parentNode.insertBefore(j, f)
-        window.dataLayer.push('js', new Date())
-        // window.dataLayer.push('config', 'G-HVF94VF4NZ',{
+        globalThis.dataLayer.push('js', new Date())
+        // globalThis.dataLayer.push('config', 'G-HVF94VF4NZ',{
         //   'user_id': utm_source
         // })
-        
+
       })(window, document, 'script', 'dataLayer', 'G-HVF94VF4NZ')
   }
 }
-// window.dataLayer = window.dataLayer || [];
+// globalThis.dataLayer = globalThis.dataLayer || [];
 // function gtag(){
 // dataLayer.push(arguments);
 // }
