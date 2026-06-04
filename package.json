@@ -6,6 +6,9 @@
   "engines": {
     "node": ">=20.11.1"
   },
+  "overrides": {
+    "minimatch": "5.1.6"
+  },
   "scripts": {
     "build": "run-s build:frontend build:server",
     "build:frontend": "webpack",
