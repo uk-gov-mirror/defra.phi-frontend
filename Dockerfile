@@ -1,4 +1,4 @@
-ARG PARENT_VERSION=latest-24
+ARG PARENT_VERSION=latest
 ARG PORT=3000
 ARG PORT_DEBUG=9229
 
@@ -15,7 +15,7 @@ ENV PORT ${PORT}
 EXPOSE ${PORT} ${PORT_DEBUG}
 
 COPY --chown=node:node package*.json ./
-RUN npm install --force
+RUN npm install
 COPY --chown=node:node . .
 RUN npm run build
 
