@@ -133,7 +133,7 @@ class CookieBanner {
    * @returns {boolean} Returns true if on the Cookies page
    */
   onCookiesPage() {
-    return window.location.pathname === '/cookies/'
+    return globalThis.location.pathname === '/cookies/'
   }
 }
 

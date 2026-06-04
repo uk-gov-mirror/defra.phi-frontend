@@ -19,6 +19,7 @@ function setErrorMessage(request, titleText, errorListText) {
 
 function catchAll(request, h) {
   const { response } = request
+  const sameOrigin = 'same-origin'
 
   if (!response.isBoom) {
     response.header(
@@ -34,13 +35,13 @@ function catchAll(request, h) {
       "default-src 'self' 'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw=' 'sha256-W+lIm8NzGKSAA+hPYBnTTi9FPX4RS+5f+vn77dO32ko=' 'sha256-pvukEGssf3w6u5+mxgVHnbiZCYAGJG7vMcjE29hkcKs='  https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'"
     )
     // COOP (Cross-Origin Opener Policy)
-    response.header('Cross-Origin-Opener-Policy', 'same-origin')
+    response.header('Cross-Origin-Opener-Policy', sameOrigin)
 
     // COEP (Cross-Origin Embedder Policy)
     response.header('Cross-Origin-Embedder-Policy', 'require-corp')
 
     // CORP (Cross-Origin Resource Policy)
-    response.header('Cross-Origin-Resource-Policy', 'same-origin')
+    response.header('Cross-Origin-Resource-Policy', sameOrigin)
 
     return h.continue
   } else {
@@ -52,11 +53,11 @@ function catchAll(request, h) {
     response.output.headers['Referrer-Policy'] = 'no-referrer'
     response.output.headers['Content-Security-Policy'] =
       "default-src 'self' 'sha256-GUQ5ad8JK5KmEWmROf3LZd9ge94daqNvd8xy9YS1iDw=' 'sha256-W+lIm8NzGKSAA+hPYBnTTi9FPX4RS+5f+vn77dO32ko=' 'sha256-pvukEGssf3w6u5+mxgVHnbiZCYAGJG7vMcjE29hkcKs='  https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'"
-    response.output.header('Cross-Origin-Opener-Policy', 'same-origin')
+    response.output.header('Cross-Origin-Opener-Policy', sameOrigin)
     // COEP (Cross-Origin Embedder Policy)
     response.output.header('Cross-Origin-Embedder-Policy', 'require-corp')
     // CORP (Cross-Origin Resource Policy)
-    response.output.header('Cross-Origin-Resource-Policy', 'same-origin')
+    response.output.header('Cross-Origin-Resource-Policy', sameOrigin)
   }
 
   request.logger.error(response)

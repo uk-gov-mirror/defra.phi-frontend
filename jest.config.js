@@ -25,7 +25,7 @@ module.exports = {
     '<rootDir>/src/client/assets/javascripts/country-search.js',
     '<rootDir>/src/client/assets/javascripts/pest-search.js',
     '<rootDir>/src/client/assets/javascripts/plant-search.js',
-    '<rootDir>/src/client/assets/javascripts/analytics.js',
+    '<rootDir>/src/client/assets/javascripts/loadAnalytics.js',
     '<rootDir>/src/client/assets/javascripts/cookie-banner.js',
     '<rootDir>/src/client/assets/javascripts/cookie-functions.js',
     '<rootDir>/src/client/assets/javascripts/cookies-page.js',

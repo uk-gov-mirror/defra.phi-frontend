@@ -115,7 +115,7 @@ export function getConsentCookie() {
  */
 export function isValidConsentCookie(options) {
   // @ts-expect-error Property does not exist on window
-  return options && options.version >= window.PHI_CONSENT_COOKIE_VERSION
+  return options && options.version >= globalThis.PHI_CONSENT_COOKIE_VERSION
 }
 
 /**
@@ -138,7 +138,7 @@ export function setConsentCookie(options) {
   delete cookieConsent.essential
 
   // @ts-expect-error Property does not exist on window
-  cookieConsent.version = window.PHI_CONSENT_COOKIE_VERSION
+  cookieConsent.version = globalThis.PHI_CONSENT_COOKIE_VERSION
 
   // Set the consent cookie
   setCookie(CONSENT_COOKIE_NAME, JSON.stringify(cookieConsent), { days: 365 })
@@ -200,19 +200,20 @@ export function resetCookies() {
         Cookie(cookie, null)
       })
     }
-    function loadGoogleAnalytics() {
-      const script = document.createElement('script')
-      script.src = ganalytics
-      script.async = true
-      document.head.appendChild(script)
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        window.dataLayer.push(arguments)
-      }
-      gtag('js', new Date())
-      gtag('config', tagID, { page_path: window.location.pathname })
-    }
   }
+}
+
+function loadGoogleAnalytics() {
+  const script = document.createElement('script')
+  script.src = ganalytics
+  script.async = true
+  document.head.appendChild(script)
+  globalThis.dataLayer = globalThis.dataLayer || []
+  function gtag() {
+    globalThis.dataLayer.push(arguments)
+  }
+  gtag('js', new Date())
+  gtag('config', tagID, { page_path: globalThis.location.pathname })
 }
 
 /**
@@ -273,10 +274,10 @@ function userAllowsCookie(cookieName) {
     cookiePreferences = DEFAULT_COOKIE_CONSENT
   }
 
-  for (const category in COOKIE_CATEGORIES) {
-    const cookiesInCategory = COOKIE_CATEGORIES[category]
-
-    if (cookiesInCategory.indexOf(cookieName) !== '-1') {
+  for (const [category, cookiesInCategory] of Object.entries(
+    COOKIE_CATEGORIES
+  )) {
+    if (cookiesInCategory.includes(cookieName)) {
       return userAllowsCookieCategory(category, cookiePreferences)
     }
   }
@@ -344,8 +345,8 @@ function deleteCookie(name) {
     // You can't tell if a cookie was set with a domain attribute or not, so try both options
 
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`
-    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=${window.location.hostname};path=/`
-    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=.${window.location.hostname};path=/`
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=${globalThis.location.hostname};path=/`
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=.${globalThis.location.hostname};path=/`
   }
 }
 
